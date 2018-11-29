@@ -10,7 +10,10 @@ const restSchema = new Schema(
         default: "Point"
       },
       coordinates: [Number]
-    }
+    },
+    images:[String],
+    photo: String,
+    file: String
   },
   {
     timestamps: {

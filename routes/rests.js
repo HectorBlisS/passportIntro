@@ -1,6 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const Restaurant = require("../models/Restaurant");
+const multer = require('multer')
+const uploader = multer({dest: './public/pics'})
 
 //json api
 
@@ -17,19 +19,39 @@ router.get("/api/:id", (req, res) => {
 });
 
 router.get("/new", (req, res, next) => {
-  res.render("rests/new");
+  //res.render("rests/new");
+  res.render('rests/image')
 });
 
-router.post("/new", (req, res, next) => {
+router.post("/new", 
+uploader.fields([
+  {name: "images", maxCount:3},
+  {name: 'photo', maxCount:1},
+  {name: 'file', maxCount:1}
+]),
+(req, res, next) => {
+
+  console.log(req.files)
+  //res.json(req.files)
+
   const r = {
-    name: req.body.name,
+    name: "prueba",
     location: {
       type: "Point",
-      coordinates: [req.body.lng, req.body.lat]
+      coordinates: [-99, 19]
     }
   };
+  if(req.files) {
+    r.images = []
+    req.files.images.forEach(f=>{
+      r.images.push('/pics/' + f.filename)
+    })
+    r.photo = '/pics/' + req.files.photo[0].filename
+    r.file = '/pics/' + req.files.file[0].filename
+  }
   Restaurant.create(r).then(rest => {
-    res.redirect("/restaurants/" + rest._id);
+    //res.redirect("/restaurants/" + rest._id);
+    res.json(rest)
   });
 });
 

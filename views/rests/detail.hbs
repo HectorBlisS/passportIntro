@@ -2,6 +2,12 @@
 <input id="lat" value="{{location.coordinates.[1]}}" type="hidden">
 <input id="lng" value="{{location.coordinates.[0] }}" type="hidden">
 
+{{#if image}}
+<img width="200" src="{{image}}" alt="">
+{{else}}
+<img width="200" src="https://i.pinimg.com/originals/16/49/1b/16491b01fdee5ae1d5bf36e5b66278bf.jpg" alt="">
+{{/if}}
+
 <div style="width:600px;height:600px" id="map"></div>
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD0iBJ86eZUGkhbuWhS7b4_B3-8cRYQgTQ&libraries=places"></script>

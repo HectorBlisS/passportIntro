@@ -1,8 +1,9 @@
-<form id="form" action="/restaurants/new" method="post">
+<form id="form" action="/restaurants/new" method="post" enctype="multipart/form-data">
   <input placeholder="Nombre del rest" name="name" type="text">
   <input id="geo" type="text">
   <input id="lat" name="lat" type="hidden">
   <input id="lng" name="lng" type="hidden">
+  <input name="image" accept="image/*" type="file">
   <input type="submit">
 </form>
 <div style="width:600px;height:600px" id="map"></div>
