@@ -7,6 +7,7 @@ const userSchema = new Schema(
     username: String,
     email: String,
     facebookId: String,
+    photoURL:String,
     role: {
       type: String,
       enum: ["ADMIN", "EDITOR", "GUEST"],
